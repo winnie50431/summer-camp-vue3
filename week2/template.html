@@ -29,8 +29,12 @@
         class="container"
       >
       <div class="row justify-content-center">
+
+        <!-- Calculator -->
         <div class="col-6">
-          <div class="row">
+
+          <div class="row">  
+            <!-- 1st Num -->
             <div class="col-md-6">
               <label for="exampleFormControlInput1" class="form-label"
                 >第一個數字</label
@@ -40,8 +44,10 @@
                 type="number"
                 class="form-control"
                 placeholder="請輸入要計算的第一個數字"
+                v-model.number="num1"
               />
             </div>
+            <!-- 2nd Num -->
             <div class="col-md-6">
               <label for="num2" class="form-label">第二個數字</label>
               <input
@@ -49,59 +55,95 @@
                 type="number"
                 class="form-control"
                 placeholder="請輸入要計算的第二個數字"
+                v-model.number="num2"
               />
             </div>
+            <!-- operator -->
             <div class="col-md-12 mt-3">
               <div class="btn-group w-100">
                 <button
                   type="button"
                   class="btn btn-outline-primary w-25"
+                  @click="answer = num1 + num2"
                 >
                   +
                 </button>
                 <button
                   type="button"
                   class="btn btn-outline-primary w-25"
+                  @click="answer = num1 - num2"
                 >
                   -
                 </button>
                 <button
                   type="button"
                   class="btn btn-outline-primary w-25"
+                  @click="answer = num1 * num2"
                 >
                   *
                 </button>
                 <button
                   type="button"
                   class="btn btn-outline-primary w-25"
+                  @click="answer = num1 / num2"
                 >
                   /
                 </button>
               </div>
             </div>
-          </div>
+          </div><!-- row -->
+
           <button
             type="button"
             class="btn btn-outline-primary d-block mt-3 w-100"
+            @click="item = record()"
           >
-            計算結果
+            紀錄結果
           </button>
-          <h4 class="mt-3">結果：100</h4>
-        </div>
+
+          <h4 class="mt-3">結果：{{answer}}</h4>
+
+        </div><!-- Calculator End -->
+
+        <!-- Record -->
         <div class="col-3">
           <h5>歷史紀錄</h5>
           <ul>
-            <li>
-              1 + 1 = 2
+            <li >{{array.text}}
             </li>
           </ul>
         </div>
-      </div>
-      </div>
+        
+      </div><!-- row -->
+      </div><!-- container -->
+
     </div>
+
     <script src="https://unpkg.com/vue@next"></script>
     <script>
-      Vue.createApp({}).mount('#app');
+      Vue.createApp({
+        data() {
+          return {
+            num1: "",
+            num2: "",
+            answer: "",
+            item: "",
+            array: [
+              {
+                text : "",
+              }
+            ],
+          }
+        },
+        methods: {
+          record(){
+            return this.num1 + "+" + this.num2 + "=" + this.answer; 
+          }
+        },
+        mounted() {
+
+        }
+      }).mount('#app');
     </script>
   </body>
 </html>
