@@ -117,7 +117,7 @@
     </div>
 
     <script src="https://unpkg.com/vue@next"></script>
-    <script>
+    <script type="text/javascript">
       Vue.createApp({
         data() {
           return {
@@ -153,7 +153,7 @@
             if (this.text.length > 10){
               this.text.pop();
             }
-            myStorage.setItem('try', JSON.stringify(this.text));
+            localStorage.setItem('try', JSON.stringify(this.text));
           }
         },
         mounted() {
