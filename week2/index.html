@@ -157,8 +157,7 @@
           }
         },
         mounted() {
-          myStorage = window.localStorage;
-          this.text = JSON.parse(myStorage.getItem('try'));
+          this.text = JSON.parse(localStorage.getItem('try'));
         }
       }).mount('#app');
     </script>
