@@ -135,19 +135,19 @@
                 break;
               case 1 :
                 this.answer = this.num1 + this.num2;
-                this.text.unshift(`${this.num1} + ${this.num2} = ${this.answer}`);
+                this.text.push(`${this.num1} + ${this.num2} = ${this.answer}`);
                 break ;
               case 2 :
                 this.answer = this.num1 - this.num2;
-                this.text.unshift(`${this.num1} - ${this.num2} = ${this.answer}`);
+                this.text.push(`${this.num1} - ${this.num2} = ${this.answer}`);
                 break ;
               case 3 :
                 this.answer = this.num1 * this.num2;
-                this.text.unshift(`${this.num1} * ${this.num2} = ${this.answer}`);
+                this.text.push(`${this.num1} * ${this.num2} = ${this.answer}`);
                 break ;
               case 4 :
                 this.answer = this.num1 / this.num2;
-                this.text.unshift(`${this.num1} % ${this.num2} = ${this.answer}`);
+                this.text.push(`${this.num1} % ${this.num2} = ${this.answer}`);
                 break ;
             }
             if (this.text.length > 10){
@@ -157,7 +157,9 @@
           }
         },
         mounted() {
-          this.text = JSON.parse(localStorage.getItem("record"));
+          if(localStorage.getItem("record")){
+            this.text = JSON.parse(localStorage.getItem("record"));
+          }
         }
       }).mount('#app');
     </script>
