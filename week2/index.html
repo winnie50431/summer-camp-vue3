@@ -153,9 +153,11 @@
             if (this.text.length > 10){
               this.text.pop();
             }
+            localStorage.setItem("record", JSON.stringify(this.text));
           }
         },
         mounted() {
+          this.text = JSON.parse(localStorage.getItem("record"));
         }
       }).mount('#app');
     </script>
