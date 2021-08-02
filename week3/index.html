@@ -39,13 +39,10 @@
                 </tr> -->
 
                 <tr v-for="(l,index) in listArr" :key="index" v-show="l.check != checked" >
-                <s>
                     <td><input class="form-check-input text-center" type="checkbox" v-model="l.check" for="aaa"></td>
                     <td><input class="form-control" type="date" v-model.lazy="l.date"></td>
                     <td><input class="form-control" type="text" placeholder="代辦事項" v-model.lazy="l.item"></td>
                     <td><button class="btn btn-outline-danger"id="delete" @click="removeList(index)">X</button></td>
-                </s>
-                </tr>
                 </tr>
             </tbody>
             <tfoot>
@@ -81,18 +78,16 @@
                 this.listArr.push({check:"",date:"",item:""});
                 this.checked=null;
             },
-
         },
         computed: {
             record(){
                 localStorage.setItem("todoList", JSON.stringify(this.listArr));
-                console.log(this.listArr);
             },
         },
         mounted() {
-            let record = localStorage.getItem("todoList");
-            if (record) {
-                this.listArr = JSON.parse(record);
+            let todoList = localStorage.getItem("todoList");
+            if (todoList) {
+                this.listArr = JSON.parse(todoList);
             }
         },
     })
