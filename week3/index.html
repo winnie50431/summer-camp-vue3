@@ -9,9 +9,6 @@
 </head>
 <body>
 <div id="app">
-    <header>
-        <h1 class="text-secondary fw-bold">&nbsp;Todo List</h1>
-    </header>
     <section>
         <table class="table table-hover text-center">
             <thead class="bg-light">
@@ -47,11 +44,15 @@
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="4" class="text-start"><button class="btn btn-secondary w-25" id="add" @click="addToList">+</button></td>
+                    <td colspan="4" class="text-start"><button class="btn btn-secondary w-25" id="add" @click="addToList">+</button>
+                </td>
                 </tr>
             </tfoot>
         </table>
     </section>
+    <footer>
+        <p class="fs-6 fw-lighter text-center text-secondary">&nbsp;TodoList made with Vue 3&nbsp;</p>
+    </footer>
 </div>
 <script src="https://unpkg.com/vue@next"></script>
 <script >
