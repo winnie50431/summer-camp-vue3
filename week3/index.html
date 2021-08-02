@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <link href="./style.css" rel="stylesheet">
+</head>
+<body>
+<div id="app">
+    <header>
+        <h1>Todo List</h1>
+    </header>
+    <section>
+        <nav>
+            <ul>
+                <li><a href="#" @click="checked=false">已完成</a></li>
+                <li><a href="#" @click="checked=true">未完成</a></li>
+                <li><a href="#" @click="checked=null">全部</a></li>
+            </ul>
+        </nav>
+        <table>
+            <thead>
+                <tr class="tr">
+                    <td><button @click="sortCheck" >check</button></td>
+                    <td>date</td>
+                    <td>item</td>
+                    <td>delete</td>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- <tr>
+                    <td><input type="checkbox"></td>
+                    <td><input type="date" ></td>
+                    <td><input type="text" placeholder="代辦事項"></td>
+                    <td><button id="delete">X</button></td>
+                </tr> -->
+
+                <tr v-for="(l,index) in listArr" :key="index" v-show="l.check != checked" >
+                    <td><input type="checkbox" v-model="l.check" ></td>
+                    <td><input type="date" v-model.lazy="l.date"></td>
+                    <td><input type="text" placeholder="代辦事項" v-model.lazy="l.item"></td>
+                    <td><button id="delete" @click="removeList(index)">X</button></td>
+                </tr>
+                </tr>
+
+
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4"><button id="add" @click="addToList">+</button></td>
+                </tr>
+            </tfoot>
+        </table>
+    </section>
+</div>
+<script src="https://unpkg.com/vue@next"></script>
+<script >
+    const app = Vue.createApp({
+        data() {
+            return {
+                newDate: "",
+                newItem: "",
+                listArr: [
+                    // {
+                    //     check: "",
+                    //     date: "",
+                    //     item: "",
+                    // },
+                ],
+                checked: null,
+            }
+        },
+        methods: {
+            removeList(i){
+                this.listArr.splice(i, 1);
+            },
+            addToList(){
+                this.listArr.push({check:"",date:"",item:""});
+                this.checked=null;
+            },
+
+        },
+        computed: {
+            record(){
+                localStorage.setItem("todoList", JSON.stringify(this.listArr));
+            }
+        },
+        mounted() {
+            let record = localStorage.getItem("todoList")
+            if (record) {
+                this.listArr = JSON.parse(record);
+            }
+        },
+    })
+    app.mount("#app");
+</script>
+</body>
+</html>
