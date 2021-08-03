@@ -38,7 +38,7 @@ _Note_
 - `mounted()` - 直到 `mounted()` 階段， Vue.js 才正式將網頁上的 DOM 節點、事件都綁定至 Vue 的實體。
 - `watch:`屬性 - 當`data`被更新時觸發。 
 
-
+參考資料: [元件的生命週期與更新機制](https://book.vue.tw/CH1/1-7-lifecycle.html)
 | Hooks 名稱(Vue 2.x/3.x) | Hooks 名稱(Vue 3.0 Composition API) | 說明 |
 | :-- | :-- |:--|
 | `created` | `setup()` | 實體建立階段: 狀態與事件已初始化完成 (prop、data、computed 等屬性已建立，vm.$el 屬性無法使用 ) |
