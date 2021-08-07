@@ -1,0 +1,77 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+.formContainer {
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1rem;
+    width: 90vw;
+    background-color: silver;
+    p {
+        text-align: center;
+        flex:1 1 auto; 
+        font-size: 1.25rem;
+    }
+    input {
+        flex:1 1 auto; 
+        padding: 0.5rem;
+        font-size: 1.25rem;
+    }
+    button {
+        flex:1 1 auto; 
+        border-radius: 0px 5px 5px 0px;
+        padding: 0.5rem;
+        font-size: 1.25rem;
+    }
+}
+
+.navbar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 1rem;
+    width: 90vw;
+    li{
+        margin-right: 1rem;
+    }
+}
+
+.listContainer{
+    margin: 1rem;
+    width: 90vw;
+    ul{
+        li{
+            display: flex;
+            justify-content: end;
+            align-items: center;
+            .input {
+                margin: 0.25rem;
+                font-size: 1.5rem;
+                flex: 2 1 auto;
+            }
+            .checkbox {
+                height: 2rem;
+                width: 2rem;
+            }
+            button {
+                height: 2rem;
+                width: 2rem;
+            }
+        }
+    }
+}
+
