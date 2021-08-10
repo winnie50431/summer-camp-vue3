@@ -5,56 +5,108 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TodoList</title>
-    <link rel="stylesheet" href="./styles/style.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
   </head>
   <body>
-    <div id="app">
-      <form class="formContainer">
-        <p class="title">代辦事項</p>
-        <input type="text" v-model="newItem" />
-        <button @click="addToList">新增</button>
+    <div class="bg-light min-vh-100" id="app">
+      <form class="p-3 input-group">
+        <span class="input-group-text">代辦事項</span>
+        <input class="form-control" type="text" v-model="newItem" />
+        <button class="btn btn-secondary" @click="addToList">新增</button>
       </form>
       <!-- 標籤頁 -->
-      <nav>
-        <ul class="navbar">
-          <li><a href="#" @click="showChecked = null">全部</a></li>
-          <li><a href="#" @click="showChecked = false">未完成</a></li>
-          <li><a href="#" @click="showChecked = true">已完成</a></li>
-          <li><a href="#" @click="clearAll">清除所有任務</a></li>
+      <nav class="m-3">
+        <ul class="nav nav-tabs" role="tablist">
+          <li class="nav-item" role="presentation">
+            <a
+              class="nav-link active"
+              href="#"
+              @click="showChecked = null"
+              data-bs-toggle="tab"
+              role="tab"
+              >全部</a
+            >
+          </li>
+          <li class="nav-item" role="presentation">
+            <a
+              class="nav-link"
+              href="#"
+              @click="showChecked = false"
+              data-bs-toggle="tab"
+              role="tab"
+              >未完成</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              href="#"
+              @click="showChecked = true"
+              data-bs-toggle="tab"
+              role="tab"
+              >已完成</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="btn text-primary" href="#" @click="clearAll"
+              >清除所有任務</a
+            >
+          </li>
         </ul>
       </nav>
       <!-- 代辦事項列表 -->
-      <div class="listContainer">
-        <ul v-for="(l,index) in sortList" :key="index">
-          <li>
-            <input
-              class="checkbox"
-              type="checkbox"
-              name=""
-              :id="index"
-              v-model="l.check"
-            />
-            <label
-              class="input"
-              :for="index"
-              v-if="index !== editIndex"
-              @dblclick="sthis.editIndex = index"
-              >{{l.item}}</label
-            >
+      <div class="m-3 pb-5">
+        <ul
+          class="list-group list-group-flush"
+          v-for="(l,index) in sortList"
+          :key="index"
+        >
+          <li
+            class="
+              d-flex
+              justify-content-between
+              align-items-center
+              list-group-item list-group-flush
+              form-check
+            "
+          >
+            <div class="px-3">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                name=""
+                :id="index"
+                v-model="l.check"
+              />
+              <label
+                class="form-check-label"
+                :for="index"
+                v-if="index !== editIndex"
+                @dblclick="this.editIndex = index"
+                >{{l.item}}</label
+              >
+            </div>
             <!-- 雙擊出現編輯窗格 -->
             <input
-              class="input"
+              class="form-control m-1"
               v-show="index === editIndex"
               type="text"
               v-model.lazy="l.item"
               @keyup.enter=" editIndex = null"
             />
-            <button @click="removeList(index)">X</button>
+            <button class="btn btn-outline-danger" @click="removeList(index)">
+              X
+            </button>
           </li>
         </ul>
       </div>
+      <!-- 代辦事項列表 -->
     </div>
-
     <script src="https://unpkg.com/vue@next"></script>
     <script>
       const app = Vue.createApp({
@@ -88,7 +140,7 @@
             if (this.showChecked === true) {
               return this.listArr.filter((l) => l.check === true);
             } else if (this.showChecked === false) {
-              return this.listArr.filter((l) => l.check === !true);
+              return this.listArr.filter((l) => l.check !== true);
             } else {
               return this.listArr;
             }
@@ -111,5 +163,11 @@
       });
       app.mount("#app");
     </script>
+    <!-- JavaScript Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>
